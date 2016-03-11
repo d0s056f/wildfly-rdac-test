@@ -6,14 +6,14 @@ ENV WILDFLY_VERSION 10.0.0.Final
 ENV WILDFLY_SHA1 c0dd7552c5207b0d116a9c25eb94d10b4f375549
 ENV JBOSS_HOME /opt/jboss/wildfly
 
-ENV USER_ID=$(id -u)
-ENV GROUP_ID=$(id -g)
+ENV USER_ID $(id -u)
+ENV GROUP_ID $(id -g)
 RUN grep -v ^jboss /etc/passwd > "$HOME/passwd"
 RUN echo "cisco_db:x:${USER_ID}:${GROUP_ID}:Cisco DB User:${HOME}:/bin/bash" >> "$HOME/passwd"
-ENV LD_PRELOAD=libnss_wrapper.so
-ENV NSS_WRAPPER_PASSWD=${HOME}/passwd
-ENV NSS_WRAPPER_GROUP=/etc/group
-ENV USER=$(whoami)
+ENV LD_PRELOAD libnss_wrapper.so
+ENV NSS_WRAPPER_PASSWD ${HOME}/passwd
+ENV NSS_WRAPPER_GROUP /etc/group
+ENV USER $(whoami)
 
 # Add the WildFly distribution to /opt, and make wildfly the owner of the extracted tar content
 # Make sure the distribution is available from a well-known place
