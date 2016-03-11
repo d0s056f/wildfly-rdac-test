@@ -8,7 +8,7 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 
 ENV USER_ID $(id -u)
 ENV GROUP_ID $(id -g)
-RUN grep -v ^default /etc/passwd > "$HOME/passwd"
+RUN grep -v ^jboss /etc/passwd > "$HOME/passwd"
 RUN echo "cisco_db:x:${USER_ID}:${GROUP_ID}:Cisco DB User:${HOME}:/bin/bash" >> "$HOME/passwd"
 ENV LD_PRELOAD libnss_wrapper.so
 ENV NSS_WRAPPER_PASSWD ${HOME}/passwd
